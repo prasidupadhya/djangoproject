@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equipment Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: flex;
+        }
+        
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            padding: 20px;
+            color: white;
+        }
+        
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar a i {
+            margin-right: 10px;
+        }
+        
+        .sidebar .active a {
+            color: #4CAF50;
+        }
+        
+        .sidebar .admin {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid white;
+            width: 100%;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+        }
+        
+        .header .boxes {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .header .box {
+            width: 20px;
+            height: 20px;
+            background-color: #ccc;
+            margin-bottom: 5px;
+        }
+        
+        .header .logo {
+            font-weight: bold;
+        }
+        
+        .equipment-management {
+            margin-bottom: 30px;
+        }
+        
+        .equipment-management h2 {
+            margin: 0;
+            font-weight: bold;
+        }
+        
+        .add-equipment {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        
+        .equipment-box {
+            border: 1px solid black;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .equipment-table {
+            overflow-x: auto;
+        }
+        
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .table-header .search-filter {
+            display: flex;
+            align-items: center;
+        }
+        
+        .table-header .search-filter input {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        
+        .table-header .add-filter {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .table-header .entries-dropdown {
+            display: flex;
+            align-items: center;
+        }
+        
+        .table-header .entries-dropdown label {
+            margin-right: 5px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+        }
+        
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border: 1px solid black;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .edit-btn, .delete-btn {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        
+        .delete-btn {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="admin">Admin</div>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Main Page</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+                <li class="active"><a href="#"><i class="fas fa-cogs"></i> Equipment</a></li>
+                <li><a href="#"><i class="fas fa-file-alt"></i> Reports</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> User Accounts</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="main-content">
+            <div class="header">
+                <div class="boxes">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="logo">IvenTrack</div>
+            </div>
+            
+            <div class="equipment-management">
+                <h2>Equipment Management</h2>
+            </div>
+            
+            <button class="add-equipment">Add Equipment</button>
+            
+            <div class="equipment-box">                
+                <div class="equipment-table">
+                    <div class="table-header">
+                        <div class="entries-dropdown">
+                            <label for="entries">Show:</label>
+                            <select id="entries">
+                                <option value="5">5</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                            <span>entries</span>
+                        </div>
+                        <div class="search-filter">
+                            <input type="text" placeholder="Search">
+                            <button class="add-filter">+ Add Filter</button>
+                        </div>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Equipment Name</th>
+                                <th>Type</th>
+                                <th>On-site/Off-site</th>
+                                <th>Quantity</th>
+                                <th>Location</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Anker Power Bank 10000 MAH</td>
+                                <td>Power/Cable</td>
+                                <td>
+                                    <input type="radio" name="site1" value="onsite"> Onsite
+                                    <input type="radio" name="site1" value="offsite"> Offsite
+                                </td>
+                                <td>2</td>
+                                <td>XRLab Blue Cabinet</td>
+                                <td>01/01/2024</td>
+                                <td>
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="radio" name="site2" value="onsite"> Onsite
+                                    <input type="radio" name="site2" value="offsite"> Offsite
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="radio" name="site3" value="onsite"> Onsite
+                                    <input type="radio" name="site3" value="offsite"> Offsite
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="radio" name="site4" value="onsite"> Onsite
+                                    <input type="radio" name="site4" value="offsite"> Offsite
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="radio" name="site5" value="onsite"> Onsite
+                                    <input type="radio" name="site5" value="offsite"> Offsite
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+</body>
+</html>
