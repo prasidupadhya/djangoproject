@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reserve Equipment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #F2F2F2;
+        }
+    
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+    
+        .sidebar {
+            width: 200px;
+            background-color: #d6f5d6;
+            padding: 0;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .sidebar .user-box {
+            background-color: #008CBA;
+            color: white;
+            padding: 20px;
+            margin-bottom: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+    
+        .sidebar .user-box h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+    
+        .sidebar .user-separator {
+            border-top: 1px solid black;
+            margin-bottom: 20px;
+        }
+    
+        .sidebar .nav-box {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            margin: 10px;
+            position: relative;
+        }
+    
+        .sidebar .nav-box a {
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+        }
+    
+        .sidebar .nav-box.active {
+            background-color: white;
+        }
+    
+        .sidebar .nav-separator {
+            height: 10px;
+            background-color: transparent;
+        }
+    
+        .sidebar .arrow-icon {
+            display: inline-block;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    
+        #reserveNav {
+            margin-left: 20px;
+        }
+    
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow: auto;
+        }
+    
+        .header {
+            background-color: #008CBA;
+            color: white;
+            padding: 0 20px;
+            margin-bottom: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    
+        .header .boxes {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    
+        .header .box {
+            width: 25px;
+            height: 3px;
+            background-color: #ccc;
+            margin-bottom: 4px;
+        }
+    
+        .header .logo {
+            font-weight: bold;
+            color: #FFFFFF;
+            font-size: 20px;
+        }
+    
+        .content {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid black;
+            width: fit-content;
+            width: 75em;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .content h4 {
+            margin-top: 0;
+            align-self: flex-start;
+        }
+    
+        .info-box {
+            background-color: #d1e8f5;
+            color: #1b52b3;
+            padding: 10px;
+            margin-bottom: 20px;
+            margin-left: 25%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 550px;
+        }
+    
+        .info-icon {
+            background-color: #1b52b3;
+            color: #FFFFFF;
+            padding: 5px;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: inline-block;
+        }
+    
+        .close-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    
+        #reservationForm {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+    
+        .form-fields {
+            flex: 1;
+            margin-right: 20px;
+        }
+    
+        .form-group {
+            margin-bottom: 20px;
+        }
+    
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    
+        select, textarea {
+            width: 50%;
+            padding: 8px;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    
+        .submit-btn-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+    
+        .submit-btn {
+            background-color: #27AE60;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 150%;
+            margin-top: 50%;
+
+        }
+    
+        .submit-btn:hover {
+            background-color: #219653;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="user-box">
+                <h3>User</h3>
+            </div>
+            <div class="user-separator"></div>
+            <div class="nav-box">
+                <a href="#"><i class="fas fa-home"></i> Main Page</a>
+            </div>
+            <div class="nav-separator"></div>
+            <div class="nav-box">
+                <a href="AdminDashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a>
+            </div>
+            <div class="nav-separator"></div>
+            <div class="nav-box active">
+                <a href="equipment_search.html"><i class="fas fa-cogs"></i> Equipment</a>
+                <span class="arrow-icon" onclick="toggleReserveNav()">&#9660;</span>
+                <div id="reserveNav" style="display: block;">
+                    <br> <a href="reserve_equipment.html">Reserve</a>
+                </div>
+            </div>
+            <div class="nav-separator"></div>
+            <div class="nav-box">
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="boxes">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="logo">IvenTrack</div>
+            </div>
+
+            <h1>Reserve Equipment</h1>
+
+            <br>
+
+            <div class="content">
+                <h4>Reserve Equipment</h4>
+                <div id="infoBox" class="info-box">
+                    <span>
+                        <i class="info-icon"></i>
+                        Staff requires 1 day notice for your equipment time off requests
+                    </span>
+                    <button class="close-btn" onclick="closeInfoBox()">&times;</button>
+                </div>
+                <form id="reservationForm">
+                    <div class="form-fields">
+                        <div class="form-group">
+                            <label for="equipmentType">Type of Equipment</label>
+                            <select id="equipmentType">
+                                <option value="">Select Type of Equipment</option>
+                                <!-- Options will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="equipment">Equipment</label>
+                            <select id="equipment">
+                                <!-- Options will be populated based on equipment type selection -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reserveDate">When</label>
+                            <input type="date" id="reserveDate" value="2024-02-29" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="note">Note:</label>
+                            <textarea id="note"></textarea>
+                        </div>
+                    </div>
+                    <div class="submit-btn-container">
+                        <button type="submit" class="submit-btn">Submit Reservation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample equipment data
+        const equipmentData = [
+            { type: 'PC/Laptop', items: ['Gigabyte Aero15 1070 (E-N5110-PC-A1)', 'Gigabyte Aero15-X9 2070 (E-N5110-PC-A3)', 'Gigabyte Aero15-X9 2070 (E-N5110-PC-A6)', 'Gigabyte Aero15-X9 2070 (E-N5110-PC-A5)'] },
+            { type: 'VR Headset', items: ['Valve Index', 'Vive Pro Eye'] },
+            { type: 'Camera/Sensors', items: ['Base Station 2'] },
+            // ... (add more equipment types and items as needed)
+        ];
+
+        // Get DOM elements
+        const equipmentTypeSelect = document.getElementById('equipmentType');
+        const equipmentSelect = document.getElementById('equipment');
+        const reservationForm = document.getElementById('reservationForm');
+
+        // Populate equipment type options
+        equipmentData.forEach(equipment => {
+            const option = document.createElement('option');
+            option.value = equipment.type;
+            option.textContent = equipment.type;
+            equipmentTypeSelect.appendChild(option);
+        });
+
+        // Handle equipment type selection
+        equipmentTypeSelect.addEventListener('change', () => {
+            const selectedType = equipmentTypeSelect.value;
+            const typeEquipment = equipmentData.find(equipment => equipment.type === selectedType);
+
+            // Clear equipment options
+            equipmentSelect.innerHTML = '';
+
+            // Populate equipment options based on selected type
+            if (typeEquipment) {
+                typeEquipment.items.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item;
+                    option.textContent = item;
+                    equipmentSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Get the selected equipment data from the query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedEquipmentName = urlParams.get('equipmentName');
+        const selectedEquipmentType = urlParams.get('equipmentType');
+
+        // Pre-select the equipment type and equipment based on the selected data
+        equipmentTypeSelect.value = selectedEquipmentType;
+        equipmentTypeSelect.dispatchEvent(new Event('change'));
+        setTimeout(() => {
+            equipmentSelect.value = selectedEquipmentName;
+        }, 100); // Small delay to ensure options are populated
+
+        // Handle form submission
+        reservationForm.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const equipmentType = equipmentTypeSelect.value;
+            const equipment = equipmentSelect.value;
+            const reserveDate = document.getElementById('reserveDate').value;
+            const note = document.getElementById('note').value;
+
+            // Perform reservation logic here
+            console.log('Equipment Type:', equipmentType);
+            console.log('Equipment:', equipment);
+            console.log('Reserve Date:', reserveDate);
+            console.log('Note:', note);
+
+            // Reset form or display a success message
+            reservationForm.reset();
+            alert('Reservation submitted successfully!');
+        });
+
+        function toggleReserveNav() {
+            const reserveNav = document.getElementById('reserveNav');
+            reserveNav.style.display = reserveNav.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function closeInfoBox() {
+            const infoBox = document.getElementById('infoBox');
+            infoBox.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
