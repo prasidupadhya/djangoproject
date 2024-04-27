@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Navigation Bar{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #b3b2b2;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .navigation {
+            width: 200px;
+            background-color: #24c185;
+            padding: 0;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navigation .user-box {
+            background-color: #204864;
+            color: #b3b2b2;
+            padding: 20px;
+            margin-bottom: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .navigation .user-box h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .navigation .user-separator {
+            border-top: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        .navigation .nav-box {
+            background-color: #e6e6e6;
+            color: black;
+            padding: 10px;
+            margin: 10px;
+            position: relative;
+        }
+
+        .navigation .nav-box a {
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+        }
+
+        .navigation .nav-separator {
+            height: 10px;
+            background-color: transparent;
+        }
+
+        .navigation .arrow-icon {
+            display: inline-block;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        #reserveNav {
+            margin-left: 20px;
+        }
+
+        .header {
+            flex: 1;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .header-content {
+            background-color: #1b3649;
+            color: white;
+            padding: 0 20px;
+            margin-bottom: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-content .boxes {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header-content .box {
+            width: 25px;
+            height: 3px;
+            background-color: #b3b2b2;
+            margin-bottom: 4px;
+        }
+
+        .header-content .logo {
+            font-weight: bold;
+            color: #FFFFFF;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <div class="user-box">
+                <h3>User</h3>
+            </div>
+            <div class="user-separator"></div>
+            <div class="nav-box">
+                <a href="#"><i class="fas fa-home"></i> Main Page</a>
+            </div>
+            <div class="nav-separator"></div>
+            <div class="nav-box">
+                <a href="user_dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a>
+            </div>
+            <div class="nav-separator"></div>
+            <div class="nav-box">
+                <a href="equipment_search.html"><i class="fas fa-cogs"></i> Equipment</a>
+                <span class="arrow-icon" onclick="toggleReserveNav()">&#9660;</span>
+                <div id="reserveNav" style="display: none;">
+                    <br> <a href="reserve_equipment.html">Reserve</a>
+                </div>
+            </div>
+            <div class="nav-separator"></div>
+            <div class="nav-box">
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+
+        <div class="header">
+            <div class="header-content">
+                <div class="boxes">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="logo">IvenTrack</div>
+            </div>
+
+            {% block content %}
+
+            <!-- Main content goes here -->
+            
+            {% endblock %}
+
+        </div>
+    </div>
+
+    <script>
+        function toggleReserveNav() {
+            const reserveNav = document.getElementById('reserveNav');
+            reserveNav.style.display = reserveNav.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
