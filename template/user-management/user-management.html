@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Management</title>
+    <link rel="stylesheet" href="user-management-styling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="header-container">
+        <div class="admin-bar">
+            <h3>ADMIN</h3>
+        </div>
+        <div class="top-bar">
+            <button id="menu-toggle" class="fas fa-bars"></button>
+            <img src="../pictures/iventrack-logo-dark.png" alt="IvenTrack Logo" class="logo">
+        </div>
+    </div>
+    <div class="container">
+        <nav class="sidebar">
+                <div class="admin-separator"></div>
+                <div class="nav-box active">
+                    <i class="fas fa-home"></i>
+                    <a href="#">Main Page</a>
+                </div>
+                <div class="nav-separator"></div>
+                <div class="nav-box">
+                    <i class="fas fa-chart-bar"></i>
+                    <a href="http://127.0.0.1:8000/AdminDashboard/">Dashboard</a>
+                </div>
+                <div class="nav-separator"></div>
+                <div class="nav-box">
+                    <i class="fas fa-cogs"></i>
+                    <a href="http://127.0.0.1:8000/Equipment/">Equipment</a>
+                </div>
+                <div class="nav-separator"></div>
+                <div class="nav-box">
+                    <i class="fas fa-file-alt"></i>
+                    <a href="http://127.0.0.1:8000/Reports/">Reports</a>
+                </div>
+                <div class="nav-box dropdown">
+                    <i class="fas fa-users"></i>
+                    <a href="#" class="dropdown-toggle">User Accounts <span class="arrow-icon">&#9660;</span></a>
+                    <div class="dropdown-menu">
+                        <a href="../user-management/user-management.html">User Management</a>
+                        <a href="../Add-Users/Add-users.html">Add Users</a>
+                    </div>
+                </div>
+                <div class="nav-separator"></div>
+                <div class="nav-box">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="#" onclick="openModal(); return false;">Logout</a>
+        </nav>
+        <div class="main-content">
+            <div class="content-header">
+                <h1>User Accounts</h1>
+            </div>
+         <div class="content">
+            <p> Manage Users</p>
+            <div class="user-controls">
+                <button>+ Add Filter</button>
+                <input type="text" placeholder="Search">
+            </div>
+            <table>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Group</th>
+                    <th>Date Created</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>email@gmail.com</td>
+                    <td>w100000</td>
+                    <td>Staff</td>
+                    <td>24/02/2024</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </table>
+            <div class="pagination">
+                Showing 1 to 5 of 5 entries
+            </div>
+         </div>    
+        </div>        
+    </div>
+
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <div class="header">
+                <h1>Logout</h1>
+            </div>
+            <div class="message">
+                <p>Hey!</p>
+                <p>Are you sure you want to log out from IvenTrack?</p>
+            </div>
+            <div class="buttons">
+                <button class="no" onclick="closeModal()">NO</button>
+                <button class="yes" onclick="window.location.href='../login/login.html';" >YES</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        var sidebar = document.querySelector('.sidebar');
+        var adminBar = document.querySelector('.admin-bar');
+        var adminText = adminBar.querySelector('h3');
+
+        sidebar.classList.toggle('collapsed');
+        adminBar.classList.toggle('collapsed');
+        adminText.classList.toggle('collapsed');
+    });
+
+    function closeModal() {
+        document.getElementById('logout-modal').style.display = 'none';
+    }
+
+    function openModal() {
+        document.getElementById('logout-modal').style.display = 'flex';
+    }
+
+    // Optional: If you want to ensure that the modal doesn't appear if someone reloads the page while the modal is open
+    window.onload = function() {
+        closeModal();  // This ensures the modal is hidden on page load
+    };
+</script>

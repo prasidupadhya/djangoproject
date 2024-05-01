@@ -1,0 +1,160 @@
+h2 {
+  font-family: 'Arvo', serif;
+}
+
+body { 
+  font-family: Helvetica; 
+}
+
+.logo {
+  position: absolute;
+  top: 10px; /* Adjust the value to suit your design */
+  left: 10px; /* Adjust the value to suit your design */
+  height: 100px; /* Adjust the value to suit your design */
+  background-color: #23465B;
+}
+
+.login-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-section {
+  font-family: 'Arvo', serif;
+  position: absolute; /* Use absolute positioning */
+  left: 150px; /* X position */
+  top: 25px; /* Y position */
+  width: 573px; /* Width */
+  height: 643px; /* Height */
+  background-color: #23465B;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 50px; /* Adjust padding if necessary, but be aware it affects the inside space */
+}
+
+.signup-section { 
+  font-family: 'Arvo', serif;
+  position: absolute;
+  left: 804px;
+  top: 25px;
+  width: 385px;
+  height: 643px;
+  background-color: #20C997; 
+  color: white; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+  padding: 50px; 
+}
+
+.login-form { 
+  max-width: 300px; 
+  margin: auto; 
+}
+
+.login-form input[type=email], .login-form input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  background: #ddd;
+  border-radius: 7px; 
+}
+
+.login-form button { 
+  width: 50%; 
+  padding: 10px; 
+  border: none; 
+  background: #20C997;
+  border-radius: 7px; 
+  cursor: pointer;
+}
+
+.button-disabled {
+  opacity: 0.75; /* Lower opacity makes the button appear faded */
+  cursor: default; /* Changes the cursor to default to indicate non-interactivity */
+}
+
+.login-form .social-buttons { 
+  display: flex; 
+  justify-content: center; 
+  margin: 20px 0; 
+}
+
+.login-form .social-button .social-button2 { 
+  padding: 10px;
+  width: 100%; 
+  text-align: center; 
+  background: #23465B; 
+}
+
+.social-button .social-button2 { 
+  text-align: center; 
+  background: #23465B; 
+  border: none; 
+  cursor: pointer; 
+}
+  
+.social-button .social-button2 img {
+  max-width: 100%; 
+  height: auto; 
+}
+
+.login-form .separator { 
+  display: flex;
+  align-items: center;
+  text-align: center; 
+  margin: 20px 0; 
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid white; 
+  margin: 0 10px;
+}
+
+.signup-section { 
+  text-align: center; 
+}
+
+.signup-section button { 
+  padding: 10px 20px;
+   background: #23465B; 
+   color: white; 
+   border: none; 
+   border-radius: 7px;
+   cursor: pointer;
+  }
+
+  .password-container {
+    position: relative;
+    display: flex;
+  }
+  
+  #passwordField {
+    flex-grow: 1;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background: #ddd;
+    border-radius: 7px;
+  }
+  
+  #showPasswordBtn {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%); 
+    background-color: #20C997;
+    color: white;
+    border: none;
+    border-radius: 0 7px 7px 0;
+    padding: 10px 10px;
+    cursor: pointer;
+  }

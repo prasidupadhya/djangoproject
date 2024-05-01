@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IvenTrack Sign Up</title>
+<link rel="stylesheet" href="signupstyle.css">
+<link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
+</head>
+<body>
+
+<div class="signup-container">
+  <div class="signin-section">
+    <img src="../pictures/iventrack-logo-dark.png" alt="IvenTrack Logo" class="logo">
+    <h2>One of Us?</h2>
+    <p>Already Part of IvenTrack?</p>
+    <p>Welcome back! Simply sign in to pick up right where you left off.</p>
+    <button class="signin-btn" id="signinBtn">Sign In</button>
+  </div>
+  
+  <div class="signup-section">
+    <div class="signup-form">
+      <h2><strong>Create Your Free Account</strong></h2>
+      <p>Sign up using social networks:</p>
+      <div class="social-buttons">
+        <div class="social-button">
+          <a href="https://en-gb.facebook.com"><img src="../pictures/facebook-logo-green.jpeg" alt="Facebook" style="width: 25%; height: auto;"></a>
+        </div>
+        <div class="social-button2">
+          <a href="https://accounts.google.com"><img src="../pictures/google-logo-green.jpeg" alt="Google" style="width: 25%; height: auto;"></a>
+        </div>
+      </div>
+      <div class="separator"><strong>OR</strong></div>
+      <input type="text" id="fullNameField" placeholder="FullName*">
+      <input type="text" id="usernameField" placeholder="Username*">
+      <input type="email" id="emailField" placeholder="Email*">
+      
+      <div class="input-group">
+        <input type="password" id="passwordField" placeholder="Password*" aria-describedby="togglePasswordVisibility">
+        <button id="togglePasswordVisibility" onclick="togglePassword()" class="toggle-password">Show</button>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="confirmPasswordField" placeholder="Confirm Password*" aria-describedby="toggleConfirmPasswordVisibility">
+        <button id="toggleConfirmPasswordVisibility" onclick="toggleConfirmPassword()" class="toggle-password">Show</button>
+      </div>
+
+      <button id="signupButton">Sign Up</button>
+    </div>
+    <div class="close-btn">X</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const signinButton = document.getElementById('signinBtn');
+    const inputs = document.querySelectorAll('#fullNameField, #usernameField, #emailField, #passwordField, #confirmPasswordField');
+    const signupButton = document.getElementById('signupButton');
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+  
+    signinButton.addEventListener('click', function() {
+        window.location.href = '../login/login.html'; // Directs user to the login.html page
+    });
+  
+    function updateButtonState() {
+        const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+        signupButton.disabled = !allFilled;
+        signupButton.classList.toggle('button-disabled', !allFilled);
+    }
+  
+    function togglePassword(event) {
+        const passwordInput = event.target.previousElementSibling;
+        const isPasswordVisible = passwordInput.type === 'password';
+        passwordInput.type = isPasswordVisible ? 'text' : 'password';
+        event.target.textContent = isPasswordVisible ? 'Hide' : 'Show';
+    }
+  
+    inputs.forEach(input => input.addEventListener('input', updateButtonState));
+    toggleButtons.forEach(button => button.addEventListener('click', togglePassword));
+  
+    updateButtonState()
+    });
+</script>
